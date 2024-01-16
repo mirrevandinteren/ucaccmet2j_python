@@ -28,6 +28,32 @@ for item in seattle_precipitation:
 # Turn the dictionary into a list
 total_monthly_precipitation = list(total_monthly_precipitation_dict.values())
 
+output_data = {
+    "Seattle" : {
+        "total_montly_precipitation" : total_monthly_precipitation
+    }
+}
+
 # Create JSON file
 with open('results.json', 'w', encoding='utf-8') as file:
-    json.dump(total_monthly_precipitation, file)
+    json.dump(output_data, file)
+
+# Question 2
+    
+# Calculate total yearly precipitation
+total_yearly_precipitation = sum(total_monthly_precipitation)
+
+# Calculate relative monthly precipitation
+relative_monthly_precipitation = [element/total_yearly_precipitation for element in total_monthly_precipitation]
+
+output_data = {
+    "Seattle" : {
+        "total_montly_precipitation" : total_monthly_precipitation,
+        "total_yearly_precipitation" : total_yearly_precipitation,
+        "relative_montly_precipitation" : relative_monthly_precipitation
+    }
+}
+
+# Create JSON file
+with open('results.json', 'w', encoding='utf-8') as file:
+    json.dump(output_data, file)
